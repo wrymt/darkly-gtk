@@ -63,7 +63,7 @@ $window_outline_color: $top_hilight;
 
   --destructive-color: #{$destructive_color};
   --destructive-bg-color: var(--destructive-color);
-  --destructive-fg-color: white;
+  --destructive-fg-color: #{$selected_fg_color};
 
   --success-bg-color: #{$success_color};
   --warning-bg-color: #{$warning_color};

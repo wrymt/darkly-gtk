@@ -980,23 +980,23 @@ button {
   }
 
   // Suggested and Destructive Action buttons
-  @each $b_type, $b_color in (suggested-action, $suggested_bg_color),
-                             (destructive-action, $destructive_color) {
+  @each $b_type, $b_bg_color, $b_fg_color in (suggested-action, $suggested_bg_color, $selected_fg_color),
+                                             (destructive-action, $destructive_color, $selected_fg_color) {
 
     @at-root %#{$b_type}-button,
     &.#{$b_type} {
-      @include button(normal, $b_color, white);
+      @include button(normal, $b_bg_color, $b_fg_color);
 
       &.flat {
         @include button(undecorated);
 
-        color: $b_color;
+        color: $b_bg_color;
       }
 
-      &:hover { @include button(hover, $b_color, white); }
+      &:hover { @include button(hover, $b_bg_color, $b_fg_color); }
 
       &:active,
-      &:checked { @include button(active, $b_color, white); animation: none;}
+      &:checked { @include button(active, $b_bg_color, $b_fg_color); animation: none;}
 
       &:backdrop,
       &.flat:backdrop { opacity: 0.5; }
@@ -1005,28 +1005,28 @@ button {
         &:backdrop, &:disabled, &:backdrop:disabled {
           @include button(undecorated);
 
-          color: gtkalpha($b_color, 0.8);
+          color: gtkalpha($b_bg_color, 0.8);
         }
       }
 
       &:disabled {
-        @include button(insensitive, $b_color, white);
+        @include button(insensitive, $b_bg_color, $b_fg_color);
 
         &:active,
-        &:checked { @include button(insensitive-active, $b_color, white); }
+        &:checked { @include button(insensitive-active, $b_bg_color, $b_fg_color); }
       }
 
       .osd & {
-        @include button(osd, $b_color);
+        @include button(osd, $b_bg_color);
 
-        &:hover { @include button(osd-hover, $b_color); }
+        &:hover { @include button(osd-hover, $b_bg_color); }
 
         &:active,
-        &:checked { &:backdrop, & { @include button(osd-active, $b_color); }}
+        &:checked { &:backdrop, & { @include button(osd-active, $b_bg_color); }}
 
-        &:disabled { &:backdrop, & { @include button(osd-insensitive, $b_color); }}
+        &:disabled { &:backdrop, & { @include button(osd-insensitive, $b_bg_color); }}
 
-        &:backdrop { @include button(osd-backdrop, $b_color); }
+        &:backdrop { @include button(osd-backdrop, $b_bg_color); }
       }
     }
   }
