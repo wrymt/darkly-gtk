@@ -4119,14 +4119,30 @@ levelbar {
 /**********
  * Frames *
  **********/
-frame {
-  border {
-    border-color: gtkalpha(black, 0.1);
-  }
+frame > border,
+.frame {
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: 1px solid transparent;
 
-  > label { color: gtkalpha($fg_color, 0.5); }
+  &.flat { border-style: none; }
 
+  &:backdrop { border-color: transparent; }
 }
+
+frame {
+  &.border-inset,
+  &.border-outset,
+  &.border-groove,
+  &.border-ridge {
+    > border { border-color: gtkalpha(black, 0.1); }
+  }
+}
+
+frame > label { color: gtkalpha($fg_color, 0.5); }
+
 @if $gtkver!="3" {
   frame {
     border-radius: $radius;
@@ -4150,6 +4166,11 @@ actionbar > revealer >  box {
 scrolledwindow {
   // This is used when content is touch-dragged past boundaries.
   // draws a box on top of the content, the size changes programmatically.
+
+  viewport.frame { // avoid double borders when viewport inside scrolled window
+    border-style: none;
+  }
+
   overshoot {
     &.top {
       @include overshoot(top);
