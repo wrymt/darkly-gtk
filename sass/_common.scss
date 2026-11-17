@@ -5226,15 +5226,18 @@ $_tooltip_shadow: 0 0 0 1px gtkalpha($DarklyrcShadowColor, 0.1),
     // lamefun trick to get rounded borders regardless of CSD use
     border-width: 0px;
 
+    @if not $DarklyrcFloatingTitlebar
+    {
     box-shadow: $_window_shadow;
-
-    // this is used for the resize cursor area
-    margin: 10px;
 
     &:backdrop {
       box-shadow: $_backdrop_window_shadow;
       transition: $backdrop_transition;
     }
+    }
+
+    // this is used for the resize cursor area
+    margin: 10px;
 
     .maximized &,
     .fullscreen & { border-radius: 0; box-shadow: none; }
