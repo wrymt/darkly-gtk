@@ -5235,7 +5235,11 @@ $_tooltip_shadow: 0 0 0 1px gtkalpha($DarklyrcShadowColor, 0.1),
       transition: $backdrop_transition;
     }
     }
-
+    @else
+    {
+      box-shadow: 0 6px 15px 1px gtkalpha($DarklyrcShadowColor, 0.2);;
+    }
+   
     // this is used for the resize cursor area
     margin: 10px;
 
